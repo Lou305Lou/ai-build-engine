@@ -1,9 +1,8 @@
 
 import json
 
-from engine.openrouter_client import OpenRouterClient
 from engine.command_router import CommandRouter
-from engine.tasks import task_generate_project, task_explain
+from engine.tasks import task_generate_project, task_explain, task_stream
 from engine.engine_registry import EngineRegistry
 
 
@@ -11,7 +10,7 @@ class AICloudApp:
     """
     Central cloud-based AI engine that routes commands,
     supports multiple engines, enforces JSON output,
-    and performs heavy-lift tasks.
+    and performs heavy-lift tasks (including streaming).
     """
 
     def __init__(self):
@@ -38,15 +37,22 @@ class AICloudApp:
         self.router = CommandRouter()
 
         # Register available tasks (they receive the active engine)
+        self._bind_tasks()
+
+    def _bind_tasks(self):
+        """
+        Bind tasks to the current active engine.
+        Call this again after switching engines.
+        """
         self.router.register(
             "generate_project",
             lambda prompt: task_generate_project(prompt, self.active_engine)
         )
-
         self.router.register(
             "explain",
             lambda prompt: task_explain(prompt, self.active_engine)
         )
+        # Streaming is handled directly in run(), not via JSON router.
 
     def run(self):
         """
@@ -54,9 +60,10 @@ class AICloudApp:
         """
         print("\n🚀 AI Cloud Engine Online")
         print("Available commands:")
-        print("  /engine <name>          # switch engine (default, betting, ...)")
+        print("  /engine <name>              # switch engine (default, betting, ...)")
         print("  /generate_project <prompt>")
         print("  /explain <prompt>")
+        print("  /stream <prompt>            # live streaming output")
         print("  /exit\n")
 
         while True:
@@ -76,17 +83,8 @@ class AICloudApp:
                 engine_name = parts[1]
                 try:
                     self.active_engine = self.registry.get(engine_name)
+                    self._bind_tasks()
                     print(f"Switched to engine: {engine_name}")
-
-                    # Re-bind tasks to new active engine
-                    self.router.register(
-                        "generate_project",
-                        lambda prompt: task_generate_project(prompt, self.active_engine)
-                    )
-                    self.router.register(
-                        "explain",
-                        lambda prompt: task_explain(prompt, self.active_engine)
-                    )
                 except Exception as e:
                     print(str(e))
                 continue
@@ -105,7 +103,18 @@ class AICloudApp:
                 print(json.dumps(result, indent=2))
                 continue
 
-            print("Unknown command. Try /engine, /generate_project, or /explain.")
+            # Streaming
+            if user_input.startswith("/stream"):
+                prompt = user_input.replace("/stream", "").strip()
+                print("\n[stream] ", end="", flush=True)
+                full_text = ""
+                for chunk in task_stream(prompt, self.active_engine):
+                    print(chunk, end="", flush=True)
+                    full_text += chunk
+                print("\n")  # newline after stream finishes
+                continue
+
+            print("Unknown command. Try /engine, /generate_project, /explain, or /stream.")
 
 
 if __name__ == "__main__":
