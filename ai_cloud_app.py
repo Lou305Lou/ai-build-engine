@@ -52,7 +52,7 @@ class AICloudApp:
             "explain",
             lambda prompt: task_explain(prompt, self.active_engine)
         )
-        # Streaming is handled directly in run(), not via JSON router.
+        # Streaming is handled directly in run()
 
     def run(self):
         """
@@ -111,7 +111,7 @@ class AICloudApp:
                 for chunk in task_stream(prompt, self.active_engine):
                     print(chunk, end="", flush=True)
                     full_text += chunk
-                print("\n")  # newline after stream finishes
+                print("\n")
                 continue
 
             print("Unknown command. Try /engine, /generate_project, /explain, or /stream.")
