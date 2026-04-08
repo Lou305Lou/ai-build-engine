@@ -1,23 +1,29 @@
-# engine/engine_registry.py
+import json
 
-from engine.openrouter_client import OpenRouterClient
+def force_json_output(client, messages):
+    system_wrapper = {
+        "role": "system",
+        "content": (
+            "You MUST return valid JSON. "
+            "Wrap your entire response in a JSON object. "
+            "Do not include explanations outside the JSON."
+        )
+    }
 
-class EngineRegistry:
-    """
-    Holds multiple AI engines, each with its own model, key, and system prompt.
-    """
+    final_messages = [system_wrapper] + messages
+    raw = client.chat(final_messages)
 
-    def __init__(self):
-        self.engines = {}
-
-    def register_engine(self, name, model, api_key=None, system_prompt=""):
-        self.engines[name] = {
-            "client": OpenRouterClient(api_key=api_key),
-            "model": model,
-            "system_prompt": system_prompt
-        }
-
-    def get(self, name):
-        if name not in self.engines:
-            raise ValueError(f"Engine '{name}' not found.")
-        return self.engines[name]
+    try:
+        return json.loads(raw)
+    except Exception:
+        try:
+            fixed = raw.strip().split("{", 1)[1]
+            fixed = "{" + fixed
+            fixed = fixed.rsplit("}", 1)[0] + "}"
+            return json.loads(fixed)
+        except Exception:
+            return {
+                "status": "error",
+                "message": "Model returned invalid JSON.",
+                "raw_output": raw
+            }
