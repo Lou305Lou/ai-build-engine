@@ -14,3 +14,5 @@ COPY alembic.ini .
 COPY app.db .
 COPY .env .
 
+EXPOSE 8000
+
