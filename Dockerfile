@@ -14,4 +14,3 @@ COPY alembic.ini .
 COPY app.db .
 COPY .env .
 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
