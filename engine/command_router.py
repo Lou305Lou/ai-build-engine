@@ -1,10 +1,14 @@
-engine/openrouter_client.py
-engine/config.py
-engine/prompts/design_project.txt
-engine/prompts/design_module.txt
-engine/prompts/generate_module_code.txt
-engine/prompts/refactor_module.txt
-engine/prompts/generate_ui_page.txt
-engine/prompts/generate_docs.txt
-cli/main.py
+class CommandRouter:
+    def __init__(self):
+        self.tasks = {}
 
+    def register(self, name, func):
+        self.tasks[name] = func
+
+    def execute(self, name, **kwargs):
+        if name not in self.tasks:
+            return {"status": "error", "error": f"Unknown task: {name}"}
+        try:
+            return self.tasks[name](**kwargs)
+        except Exception as e:
+            return {"status": "error", "error": str(e)}

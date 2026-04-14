@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import json
 
 def force_json_output(client, messages):
@@ -27,3 +28,22 @@ def force_json_output(client, messages):
                 "message": "Model returned invalid JSON.",
                 "raw_output": raw
             }
+=======
+from engine.engine import Engine
+
+
+class EngineRegistry:
+    def __init__(self):
+        self.engines = {}
+
+    def register_engine(self, name, model, system_prompt):
+        self.engines[name] = Engine(
+            model=model,
+            system_prompt=system_prompt
+        )
+
+    def get(self, name):
+        if name not in self.engines:
+            raise ValueError(f"Engine '{name}' not found.")
+        return self.engines[name]
+>>>>>>> da645af (Save local changes before rebase)

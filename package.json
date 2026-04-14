@@ -1,0 +1,26 @@
+{
+  "name": "ai-build-engine",
+  "version": "1.0.0",
+  "description": "Cloud-based AI project generator using Qwen",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lou305Lou/ai-build-engine.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lou305Lou/ai-build-engine/issues"
+  },
+  "homepage": "https://github.com/Lou305Lou/ai-build-engine#readme",
+  "dependencies": {
+    "fastify": "^5.8.4"
+  }
+}

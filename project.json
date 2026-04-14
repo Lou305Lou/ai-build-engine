@@ -1,0 +1,18 @@
+{
+  "project": {
+    ".env": "DATABASE_URL=postgresql+asyncpg://USER:PASSWORD@HOST:PORT/DBNAME\nSECRET_KEY=CHANGE_ME\nACCESS_TOKEN_EXPIRE_MINUTES=30\nREFRESH_TOKEN_EXPIRE_MINUTES=1440\nALGORITHM=HS256\nENV=development",
+    "requirements.txt": "fastapi\nuvicorn[standard]\nsqlalchemy[asyncio]\nasyncpg\npython-jose[cryptography]\npasslib[bcrypt]\npydantic\nalembic\npython-dotenv",
+    "main.py": "from fastapi import FastAPI\nfrom app.api.v1.api import api_router\nfrom app.core.config import settings\n\napp = FastAPI(title=\"Enterprise Backend\")\n\napp.include_router(api_router, prefix=settings.API_V1_STR)\n\n@app.get(\"/\")\ndef root():\n    return {\"message\": \"API is running\"}",
+    "app": {
+      "__init__.py": "",
+      "core": {},
+      "api": {},
+      "db": {},
+      "models": {},
+      "schemas": {},
+      "services": {}
+    },
+    "alembic": {},
+    "alembic.ini": "[alembic]\nscript_location = alembic\nsqlalchemy.url = postgresql+asyncpg://USER:PASSWORD@HOST:PORT/DBNAME\n\n[loggers]\nkeys = root,sqlalchemy,alembic\n\n[handlers]\nkeys = console\n\n[formatters]\nkeys = generic\n\n[logger_root]\nlevel = WARN\nhandlers = console\n\n[logger_sqlalchemy]\nlevel = WARN\nhandlers = console\nqualname = sqlalchemy.engine\n\n[logger_alembic]\nlevel = INFO\nhandlers = console\nqualname = alembic\n\n[handler_console]\nclass = StreamHandler\nargs = (sys.stderr,)\nlevel = NOTSET\nformatter = generic\n\n[formatter_generic]\nformat = %(levelname)s %(asctime)s %(name)s %(message)s"
+  }
+}

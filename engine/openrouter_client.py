@@ -1,6 +1,7 @@
 import os
 import requests
 
+<<<<<<< HEAD
 
 class OpenRouterClient:
     """
@@ -24,10 +25,26 @@ class OpenRouterClient:
         Standard non-streaming chat. Returns full text.
         """
         url = f"{self.base_url}/chat/completions"
-        payload = {
-            "model": model,
-            "messages": messages,
+=======
+
+class OpenRouterChatCompletions:
+    def __init__(self, model):
+        self.model = model
+
+    def create(self, messages, response_format=None):
+        url = "https://openrouter.ai/api/v1/chat/completions"
+
+        headers = {
+            "Authorization": f"Bearer {os.getenv('OPENROUTER_API_KEY')}",
+            "Content-Type": "application/json"
         }
+
+>>>>>>> da645af (Save local changes before rebase)
+        payload = {
+            "model": self.model,
+            "messages": messages
+        }
+<<<<<<< HEAD
         resp = requests.post(url, json=payload, headers=self._headers())
         resp.raise_for_status()
         data = resp.json()
@@ -71,3 +88,28 @@ class OpenRouterClient:
 
         # Final return value if someone wants the whole thing
         return full_text
+=======
+
+        if response_format:
+            payload["response_format"] = response_format
+
+        response = requests.post(url, json=payload, headers=headers)
+        response.raise_for_status()
+
+        return response.json()
+
+
+class OpenRouterChat:
+    def __init__(self, model):
+        self.completions = OpenRouterChatCompletions(model)
+
+
+class OpenRouterClient:
+    def __init__(self):
+        self.model = None
+        self.chat = None
+
+    def set_model(self, model):
+        self.model = model
+        self.chat = OpenRouterChat(model)
+>>>>>>> da645af (Save local changes before rebase)
