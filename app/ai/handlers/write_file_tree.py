@@ -1,8 +1,11 @@
 from app.ai.writers.file_writer import file_writer
 
+
 async def handle_write_file_tree(payload: dict) -> dict:
     """
-    Write a file tree to disk.
+    AI command: write_file_tree
+    - Writes the provided file tree to disk
+    - Returns the file_writer result object
     """
     tree = payload.get("tree")
     if not tree:
@@ -12,5 +15,5 @@ async def handle_write_file_tree(payload: dict) -> dict:
 
     return {
         "command": "write_file_tree",
-        "result": result
+        "result": result,
     }

@@ -1,12 +1,1 @@
-# Chunk 236 — Deployment Layer: Python Dependencies
-
-fastapi
-uvicorn
-python-dotenv
-httpx
-pydantic
-pydantic-settings
-SQLAlchemy
-aiosqlite
-email-validator
-passlib[bcrypt]
+python-jose[cryptography]

@@ -19,6 +19,7 @@ from app.ai.handlers import (
     handle_stream_patch_region_ast,
 )
 
+
 class AICommandRouter:
     """
     Central dispatcher for all AI Cloud Engine commands.

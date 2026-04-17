@@ -1,0 +1,583 @@
+.
+├── Dockerfile
+├── README.md
+├── ai_cloud_app.py
+├── alembic
+│   ├── env.py
+│   ├── script.py.mako
+│   └── versions
+│       └── 0001_create_users_table.py
+├── alembic.ini
+├── api
+│   ├── engine_integration.py
+│   ├── main.py
+│   ├── model_connector.py
+│   ├── routes_ai.py
+│   └── routes_builder.py
+├── app
+│   ├── __init__.py
+│   ├── __pycache__
+│   │   └── __init__.cpython-312.pyc
+│   ├── ai
+│   │   ├── assembly
+│   │   ├── builders
+│   │   ├── client.py
+│   │   ├── command_router.py
+│   │   ├── events
+│   │   ├── generators
+│   │   ├── handlers
+│   │   ├── history
+│   │   ├── inference
+│   │   ├── llm
+│   │   ├── micro_engines
+│   │   ├── patching
+│   │   ├── prompts.py
+│   │   └── writers
+│   ├── api
+│   │   ├── __init__.py
+│   │   ├── deps
+│   │   ├── errors
+│   │   └── v1
+│   ├── core
+│   │   ├── __pycache__
+│   │   ├── config.py
+│   │   ├── logging.py
+│   │   ├── security.py
+│   │   └── settings.py
+│   ├── crud
+│   │   └── user.py
+│   ├── db
+│   │   ├── __init__.py
+│   │   ├── __pycache__
+│   │   ├── base.py
+│   │   ├── base_class.py
+│   │   ├── init_db.py
+│   │   ├── migrations
+│   │   └── session.py
+│   ├── main.py
+│   ├── models
+│   │   ├── __init__.py
+│   │   ├── __pycache__
+│   │   └── user.py
+│   ├── schemas
+│   │   └── user.py
+│   └── services
+│       └── user_service.py
+├── app.db
+├── demo
+│   └── app.py
+├── engine
+│   ├── __init__.py
+│   ├── __pycache__
+│   │   ├── __init__.cpython-312.pyc
+│   │   ├── command_router.cpython-312.pyc
+│   │   ├── diff_preview.cpython-312.pyc
+│   │   ├── engine.cpython-312.pyc
+│   │   ├── engine_registry.cpython-312.pyc
+│   │   ├── file_writer.cpython-312.pyc
+│   │   ├── history_manager.cpython-312.pyc
+│   │   ├── json_output.cpython-312.pyc
+│   │   ├── openrouter_client.cpython-312.pyc
+│   │   ├── tasks.cpython-312.pyc
+│   │   └── tree_preview.cpython-312.pyc
+│   ├── command_router.py
+│   ├── diff_preview.py
+│   ├── engine.py
+│   ├── engine_registry.py
+│   ├── file_writer.py
+│   ├── generator.js
+│   ├── history_manager.py
+│   ├── json_output.py
+│   ├── openrouter_client.py
+│   ├── tasks.py
+│   ├── tree_preview.py
+│   └── utils
+│       └── fileWriter.js
+├── engines
+│   ├── meta
+│   │   ├── meta_execution_router.py
+│   │   ├── meta_output_governor.py
+│   │   └── meta_safety_gateway.py
+│   └── safety
+│       └── fusion_safety_aggregator.py
+├── fly.toml
+├── main.py
+├── node_modules
+│   ├── @fastify
+│   │   ├── ajv-compiler
+│   │   ├── error
+│   │   ├── fast-json-stringify-compiler
+│   │   ├── forwarded
+│   │   ├── merge-json-schemas
+│   │   └── proxy-addr
+│   ├── @pinojs
+│   │   └── redact
+│   ├── abstract-logging
+│   │   ├── Readme.md
+│   │   ├── index.js
+│   │   ├── package.json
+│   │   └── test.js
+│   ├── ajv
+│   │   ├── LICENSE
+│   │   ├── README.md
+│   │   ├── dist
+│   │   ├── lib
+│   │   └── package.json
+│   ├── ajv-formats
+│   │   ├── LICENSE
+│   │   ├── README.md
+│   │   ├── dist
+│   │   ├── package.json
+│   │   └── src
+│   ├── atomic-sleep
+│   │   ├── LICENSE
+│   │   ├── index.js
+│   │   ├── package.json
+│   │   ├── readme.md
+│   │   └── test.js
+│   ├── avvio
+│   │   ├── LICENSE
+│   │   ├── README.md
+│   │   ├── boot.js
+│   │   ├── eslint.config.js
+│   │   ├── examples
+│   │   ├── index.d.ts
+│   │   ├── lib
+│   │   ├── package.json
+│   │   └── test
+│   ├── cookie
+│   │   ├── LICENSE
+│   │   ├── README.md
+│   │   ├── dist
+│   │   └── package.json
+│   ├── dequal
+│   │   ├── dist
+│   │   ├── index.d.ts
+│   │   ├── license
+│   │   ├── lite
+│   │   ├── package.json
+│   │   └── readme.md
+│   ├── fast-decode-uri-component
+│   │   ├── LICENSE
+│   │   ├── README.md
+│   │   ├── bench.js
+│   │   ├── index.js
+│   │   ├── package.json
+│   │   └── test.js
+│   ├── fast-deep-equal
+│   │   ├── LICENSE
+│   │   ├── README.md
+│   │   ├── es6
+│   │   ├── index.d.ts
+│   │   ├── index.js
+│   │   ├── package.json
+│   │   ├── react.d.ts
+│   │   └── react.js
+│   ├── fast-json-stringify
+│   │   ├── LICENSE
+│   │   ├── README.md
+│   │   ├── benchmark
+│   │   ├── build
+│   │   ├── eslint.config.js
+│   │   ├── examples
+│   │   ├── index.js
+│   │   ├── lib
+│   │   ├── package.json
+│   │   ├── test
+│   │   └── types
+│   ├── fast-querystring
+│   │   ├── LICENSE
+│   │   ├── README.md
+│   │   ├── lib
+│   │   └── package.json
+│   ├── fast-uri
+│   │   ├── LICENSE
+│   │   ├── README.md
+│   │   ├── benchmark
+│   │   ├── eslint.config.js
+│   │   ├── index.js
+│   │   ├── lib
+│   │   ├── package.json
+│   │   ├── test
+│   │   ├── tsconfig.json
+│   │   └── types
+│   ├── fastify
+│   │   ├── AGENTS.md
+│   │   ├── GOVERNANCE.md
+│   │   ├── LICENSE
+│   │   ├── PROJECT_CHARTER.md
+│   │   ├── README.md
+│   │   ├── SECURITY.md
+│   │   ├── SPONSORS.md
+│   │   ├── build
+│   │   ├── docs
+│   │   ├── eslint.config.js
+│   │   ├── examples
+│   │   ├── fastify.d.ts
+│   │   ├── fastify.js
+│   │   ├── integration
+│   │   ├── lib
+│   │   ├── package.json
+│   │   ├── scripts
+│   │   ├── test
+│   │   └── types
+│   ├── fastq
+│   │   ├── LICENSE
+│   │   ├── README.md
+│   │   ├── SECURITY.md
+│   │   ├── bench.js
+│   │   ├── eslint.config.js
+│   │   ├── example.js
+│   │   ├── example.mjs
+│   │   ├── index.d.ts
+│   │   ├── package.json
+│   │   ├── queue.js
+│   │   └── test
+│   ├── find-my-way
+│   │   ├── LICENSE
+│   │   ├── README.md
+│   │   ├── benchmark
+│   │   ├── example.js
+│   │   ├── index.d.ts
+│   │   ├── index.js
+│   │   ├── lib
+│   │   ├── package.json
+│   │   └── test
+│   ├── ipaddr.js
+│   │   ├── LICENSE
+│   │   ├── README.md
+│   │   ├── ipaddr.min.js
+│   │   ├── lib
+│   │   └── package.json
+│   ├── json-schema-ref-resolver
+│   │   ├── LICENSE
+│   │   ├── README.md
+│   │   ├── eslint.config.js
+│   │   ├── index.js
+│   │   ├── package.json
+│   │   ├── test
+│   │   └── types
+│   ├── json-schema-traverse
+│   │   ├── LICENSE
+│   │   ├── README.md
+│   │   ├── index.d.ts
+│   │   ├── index.js
+│   │   ├── package.json
+│   │   └── spec
+│   ├── light-my-request
+│   │   ├── LICENSE
+│   │   ├── README.md
+│   │   ├── benchmark
+│   │   ├── build
+│   │   ├── eslint.config.js
+│   │   ├── index.js
+│   │   ├── lib
+│   │   ├── node_modules
+│   │   ├── package.json
+│   │   ├── test
+│   │   └── types
+│   ├── on-exit-leak-free
+│   │   ├── LICENSE
+│   │   ├── README.md
+│   │   ├── index.js
+│   │   ├── package.json
+│   │   └── test
+│   ├── pino
+│   │   ├── CNAME
+│   │   ├── CONTRIBUTING.md
+│   │   ├── LICENSE
+│   │   ├── README.md
+│   │   ├── SECURITY.md
+│   │   ├── benchmarks
+│   │   ├── bin.js
+│   │   ├── browser.js
+│   │   ├── build
+│   │   ├── docs
+│   │   ├── eslint.config.js
+│   │   ├── examples
+│   │   ├── favicon.ico
+│   │   ├── file.js
+│   │   ├── inc-version.sh
+│   │   ├── index.html
+│   │   ├── lib
+│   │   ├── package.json
+│   │   ├── pino.d.ts
+│   │   ├── pino.js
+│   │   ├── test
+│   │   └── tsconfig.json
+│   ├── pino-abstract-transport
+│   │   ├── LICENSE
+│   │   ├── README.md
+│   │   ├── index.d.ts
+│   │   ├── index.js
+│   │   ├── package.json
+│   │   └── test
+│   ├── pino-std-serializers
+│   │   ├── LICENSE
+│   │   ├── Readme.md
+│   │   ├── eslint.config.js
+│   │   ├── index.d.ts
+│   │   ├── index.js
+│   │   ├── lib
+│   │   ├── package.json
+│   │   ├── test
+│   │   └── tsconfig.json
+│   ├── process-warning
+│   │   ├── LICENSE
+│   │   ├── README.md
+│   │   ├── benchmarks
+│   │   ├── eslint.config.js
+│   │   ├── examples
+│   │   ├── index.js
+│   │   ├── package.json
+│   │   ├── test
+│   │   └── types
+│   ├── quick-format-unescaped
+│   │   ├── LICENSE
+│   │   ├── benchmark.js
+│   │   ├── index.js
+│   │   ├── package.json
+│   │   ├── readme.md
+│   │   └── test
+│   ├── real-require
+│   │   ├── LICENSE.md
+│   │   ├── README.md
+│   │   ├── package.json
+│   │   └── src
+│   ├── require-from-string
+│   │   ├── index.js
+│   │   ├── license
+│   │   ├── package.json
+│   │   └── readme.md
+│   ├── ret
+│   │   ├── LICENSE
+│   │   ├── README.md
+│   │   ├── dist
+│   │   └── package.json
+│   ├── reusify
+│   │   ├── LICENSE
+│   │   ├── README.md
+│   │   ├── SECURITY.md
+│   │   ├── benchmarks
+│   │   ├── eslint.config.js
+│   │   ├── package.json
+│   │   ├── reusify.d.ts
+│   │   ├── reusify.js
+│   │   ├── test.js
+│   │   └── tsconfig.json
+│   ├── rfdc
+│   │   ├── LICENSE
+│   │   ├── default.js
+│   │   ├── index.d.ts
+│   │   ├── index.js
+│   │   ├── index.test-d.ts
+│   │   ├── package.json
+│   │   ├── readme.md
+│   │   └── test
+│   ├── safe-regex2
+│   │   ├── LICENSE
+│   │   ├── README.md
+│   │   ├── bin
+│   │   ├── eslint.config.js
+│   │   ├── example
+│   │   ├── index.js
+│   │   ├── package.json
+│   │   ├── test
+│   │   └── types
+│   ├── safe-stable-stringify
+│   │   ├── LICENSE
+│   │   ├── esm
+│   │   ├── index.d.ts
+│   │   ├── index.js
+│   │   ├── package.json
+│   │   └── readme.md
+│   ├── secure-json-parse
+│   │   ├── LICENSE
+│   │   ├── README.md
+│   │   ├── benchmarks
+│   │   ├── eslint.config.js
+│   │   ├── index.js
+│   │   ├── package.json
+│   │   ├── test
+│   │   └── types
+│   ├── semver
+│   │   ├── LICENSE
+│   │   ├── README.md
+│   │   ├── bin
+│   │   ├── classes
+│   │   ├── functions
+│   │   ├── index.js
+│   │   ├── internal
+│   │   ├── package.json
+│   │   ├── preload.js
+│   │   ├── range.bnf
+│   │   └── ranges
+│   ├── set-cookie-parser
+│   │   ├── LICENSE
+│   │   ├── README.md
+│   │   ├── lib
+│   │   └── package.json
+│   ├── sonic-boom
+│   │   ├── LICENSE
+│   │   ├── README.md
+│   │   ├── bench.js
+│   │   ├── check.js
+│   │   ├── example.js
+│   │   ├── fixtures
+│   │   ├── index.js
+│   │   ├── package.json
+│   │   ├── test
+│   │   └── types
+│   ├── split2
+│   │   ├── LICENSE
+│   │   ├── README.md
+│   │   ├── bench.js
+│   │   ├── index.js
+│   │   ├── package.json
+│   │   └── test.js
+│   ├── thread-stream
+│   │   ├── CLAUDE.md
+│   │   ├── LICENSE
+│   │   ├── README.md
+│   │   ├── bench.js
+│   │   ├── eslint.config.js
+│   │   ├── index.d.ts
+│   │   ├── index.js
+│   │   ├── lib
+│   │   ├── package.json
+│   │   ├── test
+│   │   └── tsconfig.json
+│   └── toad-cache
+│       ├── LICENSE
+│       ├── README.md
+│       ├── dist
+│       ├── package.json
+│       ├── toad-cache.d.cts
+│       └── toad-cache.d.ts
+├── package-lock.json
+├── package.json
+├── project.json
+├── redeploy.txt
+├── redeploy2.txt
+├── repo_tree.txt
+├── requirements.txt
+├── routes
+│   └── generate.js
+├── run.sh
+├── server.js
+├── src
+│   ├── api
+│   │   ├── fusion_api_engine.ts
+│   │   ├── fusion_api_extensions.ts
+│   │   ├── global_api_engine.ts
+│   │   └── system_api_engine.ts
+│   ├── automation
+│   │   ├── automation_orchestrator.ts
+│   │   ├── decision_engine.ts
+│   │   ├── dispatch
+│   │   ├── execution_engine.ts
+│   │   ├── execution_validator.ts
+│   │   ├── index.ts
+│   │   ├── logs
+│   │   ├── meta
+│   │   ├── order_dispatch_engine.ts
+│   │   ├── order_engine.ts
+│   │   ├── order_router.ts
+│   │   ├── order_validator.ts
+│   │   ├── risk_engine.ts
+│   │   ├── safety
+│   │   ├── signal_engine.ts
+│   │   └── tv_input_normalizer.ts
+│   ├── engines
+│   │   ├── macro
+│   │   └── micro
+│   ├── fusion
+│   │   ├── fusion_output_engine.ts
+│   │   ├── fusion_readiness_engine.ts
+│   │   ├── fusion_safety_engine.ts
+│   │   ├── fusion_snapshot_engine.ts
+│   │   ├── fusion_state_engine.ts
+│   │   ├── fusion_telemetry_engine.ts
+│   │   ├── global_confidence_engine.ts
+│   │   ├── global_execution_engine.ts
+│   │   ├── global_intelligence_engine.ts
+│   │   ├── global_narrative_engine.ts
+│   │   ├── global_output_aggregation_engine.ts
+│   │   ├── global_output_engine.ts
+│   │   ├── global_readiness_engine.ts
+│   │   ├── global_routing_engine.ts
+│   │   ├── global_safety_engine.ts
+│   │   ├── global_snapshot_engine.ts
+│   │   ├── global_state_engine.ts
+│   │   ├── global_telemetry_engine.ts
+│   │   └── global_weighting_engine.ts
+│   ├── meta
+│   │   ├── hyper_meta_engine.ts
+│   │   ├── meta_confidence_engine.ts
+│   │   ├── meta_execution_engine.ts
+│   │   ├── meta_output_engine.ts
+│   │   ├── meta_readiness_engine.ts
+│   │   ├── meta_routing_engine.ts
+│   │   ├── meta_safety_engine.ts
+│   │   ├── meta_state_engine.ts
+│   │   ├── meta_telemetry_engine.ts
+│   │   └── meta_weighting_engine.ts
+│   ├── routes
+│   │   ├── fusion_routes.ts
+│   │   ├── global_routes.ts
+│   │   ├── meta_routes.ts
+│   │   ├── system_routes.ts
+│   │   ├── tradingview_automation.ts
+│   │   ├── tradingview_automation_index.ts
+│   │   ├── tradingview_automation_loader.ts
+│   │   ├── tradingview_automation_logged.ts
+│   │   ├── tradingview_automation_logged_index.ts
+│   │   ├── tradingview_automation_logged_loader.ts
+│   │   ├── tradingview_automation_logged_master_loader.ts
+│   │   ├── tradingview_automation_master_loader.ts
+│   │   ├── tradingview_full_pipeline.ts
+│   │   ├── tradingview_fusion_bridge.ts
+│   │   ├── tradingview_fusion_system_bridge.ts
+│   │   ├── tradingview_fusion_system_global.ts
+│   │   ├── tradingview_index.ts
+│   │   ├── tradingview_loader.ts
+│   │   ├── tradingview_master_pipeline.ts
+│   │   ├── tradingview_master_routes.ts
+│   │   ├── tradingview_routes.ts
+│   │   └── tradingview_unified_output.ts
+│   ├── server
+│   │   └── server.ts
+│   └── system
+│       ├── system_health_engine.ts
+│       ├── system_orchestration_engine.ts
+│       ├── system_output_engine.ts
+│       ├── system_readiness_engine.ts
+│       ├── system_safety_engine.ts
+│       └── system_snapshot_engine.ts
+├── test_folder
+│   └── hello.txt
+├── test_openrouter.py
+└── venv
+    ├── bin
+    │   ├── Activate.ps1
+    │   ├── activate
+    │   ├── activate.csh
+    │   ├── activate.fish
+    │   ├── alembic
+    │   ├── dotenv
+    │   ├── mako-render
+    │   ├── pip
+    │   ├── pip3
+    │   ├── pip3.12
+    │   ├── python -> python3
+    │   ├── python3 -> /home/codespace/.python/current/bin/python3
+    │   └── python3.12 -> python3
+    ├── include
+    │   ├── python3.12
+    │   └── site
+    ├── lib
+    │   └── python3.12
+    ├── lib64 -> lib
+    └── pyvenv.cfg
+
+196 directories, 385 files

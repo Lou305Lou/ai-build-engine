@@ -1,8 +1,12 @@
 from app.ai.generators.code_generator import code_generator
 
+
 async def handle_generate_code_files(payload: dict) -> dict:
     """
-    Convert AI output into a structured set of code files.
+    AI command: generate_code_files
+    - Extracts code blocks from AI text
+    - Maps blocks to real file paths
+    - Returns a complete file map
     """
     ai_text = payload.get("ai_text")
     if not ai_text:
@@ -14,5 +18,5 @@ async def handle_generate_code_files(payload: dict) -> dict:
     return {
         "command": "generate_code_files",
         "files": file_map,
-        "count": len(file_map)
+        "count": len(file_map),
     }

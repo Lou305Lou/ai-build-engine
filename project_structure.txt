@@ -1,0 +1,444 @@
+.
+├── .ai_history
+├── .env.example
+├── Dockerfile
+├── ai-cloud-app
+│   └── requirements.txt
+├── alembic
+│   ├── env.py
+│   ├── script.py.mako
+│   └── versions
+│       └── 0001_create_users_table.py
+├── alembic.ini
+├── api
+│   ├── engine_integration.py
+│   ├── main.py
+│   ├── model_connector.py
+│   ├── routes_ai.py
+│   └── routes_builder.py
+├── app
+│   ├── __init__.py
+│   ├── ai
+│   │   ├── assembly
+│   │   │   ├── live_assembler.py
+│   │   │   └── project_assembler.py
+│   │   ├── builders
+│   │   │   ├── file_plan_builder.py
+│   │   │   └── file_tree_builder.py
+│   │   ├── client.py
+│   │   ├── command_router.py
+│   │   ├── events
+│   │   │   └── event_builder.py
+│   │   ├── generators
+│   │   │   └── code_generator.py
+│   │   ├── handlers
+│   │   │   ├── __init__.py
+│   │   │   ├── assemble_project.py
+│   │   │   ├── dispatch_command.py
+│   │   │   ├── generate_code_files.py
+│   │   │   ├── generate_file_plan.py
+│   │   │   ├── generate_file_tree.py
+│   │   │   ├── generate_project.py
+│   │   │   ├── infer_paths.py
+│   │   │   ├── patch_file.py
+│   │   │   ├── patch_region.py
+│   │   │   ├── patch_region_ast.py
+│   │   │   ├── run_micro_chain.py
+│   │   │   ├── run_micro_engine.py
+│   │   │   ├── run_micro_graph.py
+│   │   │   ├── run_micro_pipeline.py
+│   │   │   ├── run_micro_task.py
+│   │   │   ├── run_pipeline.py
+│   │   │   ├── run_task.py
+│   │   │   ├── stream_ai_response.py
+│   │   │   ├── stream_assemble_project.py
+│   │   │   ├── stream_patch_file.py
+│   │   │   ├── stream_patch_region.py
+│   │   │   ├── stream_patch_region_ast.py
+│   │   │   ├── test_ai_connection.py
+│   │   │   ├── undo_last_write.py
+│   │   │   └── write_file_tree.py
+│   │   ├── history
+│   │   │   └── history_manager.py
+│   │   ├── hyper_engines
+│   │   │   ├── hyper_anomaly_aggregator.py
+│   │   │   ├── hyper_anomaly_engine.py
+│   │   │   ├── hyper_anomaly_finalizer.py
+│   │   │   ├── hyper_confidence_aggregator.py
+│   │   │   ├── hyper_confidence_engine.py
+│   │   │   ├── hyper_confidence_finalizer.py
+│   │   │   ├── hyper_contradiction_aggregator.py
+│   │   │   ├── hyper_contradiction_engine.py
+│   │   │   ├── hyper_contradiction_finalizer.py
+│   │   │   ├── hyper_correction_aggregator.py
+│   │   │   ├── hyper_correction_engine.py
+│   │   │   ├── hyper_correction_finalizer.py
+│   │   │   ├── hyper_correction_orchestrator.py
+│   │   │   ├── hyper_drift_aggregator.py
+│   │   │   ├── hyper_drift_engine.py
+│   │   │   ├── hyper_drift_finalizer.py
+│   │   │   ├── hyper_final_verdict_engine.py
+│   │   │   ├── hyper_integrity_engine.py
+│   │   │   ├── hyper_integrity_finalizer.py
+│   │   │   ├── hyper_integrity_orchestrator.py
+│   │   │   ├── hyper_layer_collector.py
+│   │   │   ├── hyper_master_aggregator.py
+│   │   │   ├── hyper_master_finalizer.py
+│   │   │   ├── hyper_phase_orchestrator.py
+│   │   │   ├── hyper_resolution_engine.py
+│   │   │   ├── hyper_resolution_finalizer.py
+│   │   │   ├── hyper_signal_integrator.py
+│   │   │   ├── hyper_signal_normalizer.py
+│   │   │   ├── hyper_stability_aggregator.py
+│   │   │   ├── hyper_stability_engine.py
+│   │   │   ├── hyper_stability_finalizer.py
+│   │   │   ├── hyper_stability_orchestrator.py
+│   │   │   ├── hyper_stability_score_engine.py
+│   │   │   ├── hyper_stability_synthesizer.py
+│   │   │   ├── hyper_stability_verdict_engine.py
+│   │   │   ├── hyper_summary_engine.py
+│   │   │   ├── hyper_system_report_engine.py
+│   │   │   ├── hyper_variance_aggregator.py
+│   │   │   ├── hyper_variance_engine.py
+│   │   │   └── hyper_variance_finalizer.py
+│   │   ├── inference
+│   │   │   └── path_inference.py
+│   │   ├── llm
+│   │   │   ├── llm_client.py
+│   │   │   └── llm_stream_client.py
+│   │   ├── macro_engines
+│   │   │   ├── macro_aggregator.py
+│   │   │   ├── macro_coherence_engine.py
+│   │   │   ├── macro_completeness_engine.py
+│   │   │   ├── macro_confidence_engine.py
+│   │   │   ├── macro_factuality_engine.py
+│   │   │   ├── macro_finalizer.py
+│   │   │   ├── macro_quality_engine.py
+│   │   │   ├── macro_reasoning_engine.py
+│   │   │   ├── macro_relevance_engine.py
+│   │   │   ├── macro_safety_engine.py
+│   │   │   └── macro_style_engine.py
+│   │   ├── meta_engines
+│   │   │   ├── meta_aggregator.py
+│   │   │   ├── meta_coherence_engine.py
+│   │   │   ├── meta_completeness_engine.py
+│   │   │   ├── meta_confidence_engine.py
+│   │   │   ├── meta_consistency_aggregator.py
+│   │   │   ├── meta_consistency_engine.py
+│   │   │   ├── meta_consistency_finalizer.py
+│   │   │   ├── meta_factuality_engine.py
+│   │   │   ├── meta_finalizer.py
+│   │   │   ├── meta_integrity_engine.py
+│   │   │   ├── meta_integrity_finalizer.py
+│   │   │   ├── meta_meta_aggregator.py
+│   │   │   ├── meta_meta_coherence_engine.py
+│   │   │   ├── meta_meta_completeness_engine.py
+│   │   │   ├── meta_meta_confidence_engine.py
+│   │   │   ├── meta_meta_factuality_engine.py
+│   │   │   ├── meta_meta_finalizer.py
+│   │   │   ├── meta_meta_quality_engine.py
+│   │   │   ├── meta_meta_reasoning_engine.py
+│   │   │   ├── meta_meta_relevance_engine.py
+│   │   │   ├── meta_meta_safety_engine.py
+│   │   │   ├── meta_meta_style_engine.py
+│   │   │   ├── meta_quality_engine.py
+│   │   │   ├── meta_reasoning_engine.py
+│   │   │   ├── meta_safety_engine.py
+│   │   │   ├── meta_stability_aggregator.py
+│   │   │   ├── meta_stability_engine.py
+│   │   │   └── meta_style_engine.py
+│   │   ├── micro_engines
+│   │   │   ├── coherence_engine.py
+│   │   │   ├── completeness_engine.py
+│   │   │   ├── confidence_engine.py
+│   │   │   ├── factuality_engine.py
+│   │   │   ├── micro_engine_runner.py
+│   │   │   ├── micro_pipeline_runner.py
+│   │   │   ├── orchestrator.py
+│   │   │   ├── reasoning_engine.py
+│   │   │   ├── relevance_engine.py
+│   │   │   ├── safety_engine.py
+│   │   │   ├── style_engine.py
+│   │   │   └── validation_engine.py
+│   │   ├── patching
+│   │   │   ├── ast_region_patcher.py
+│   │   │   ├── file_patcher.py
+│   │   │   └── region_patcher.py
+│   │   ├── prompts.py
+│   │   └── writers
+│   │       └── file_writer.py
+│   ├── ai_cloud
+│   │   ├── ai_cloud_app.py
+│   │   ├── ai_cloud_app_info.py
+│   │   ├── ai_cloud_boot.py
+│   │   ├── ai_cloud_errors.py
+│   │   ├── ai_cloud_logger.py
+│   │   ├── ai_cloud_runtime_guard.py
+│   │   ├── ai_cloud_shutdown.py
+│   │   ├── ai_cloud_startup_log.py
+│   │   ├── commands
+│   │   │   ├── __init__.py
+│   │   │   ├── ai_cloud_command_api.py
+│   │   │   ├── ai_cloud_command_engine.py
+│   │   │   ├── ai_cloud_command_request.py
+│   │   │   ├── ai_cloud_command_response.py
+│   │   │   ├── ai_cloud_command_router.py
+│   │   │   ├── command_dry_run.py
+│   │   │   ├── command_evaluate.py
+│   │   │   ├── command_evaluate_layers.py
+│   │   │   ├── command_explain.py
+│   │   │   ├── command_generate_project.py
+│   │   │   ├── command_health.py
+│   │   │   ├── command_introspection.py
+│   │   │   ├── command_metadata.py
+│   │   │   ├── command_registry.py
+│   │   │   ├── command_status.py
+│   │   │   ├── command_stream.py
+│   │   │   ├── command_validation.py
+│   │   │   └── register_command.py
+│   │   ├── integration
+│   │   │   ├── __init__.py
+│   │   │   ├── integration_ai_cloud_app_layers.py
+│   │   │   └── integration_hyper_meta_macro_micro.py
+│   │   └── projects
+│   │       ├── project_file_writer.py
+│   │       ├── project_generator.py
+│   │       ├── project_models.py
+│   │       └── project_structure_builder.py
+│   ├── api
+│   │   ├── __init__.py
+│   │   ├── api_app.py
+│   │   ├── api_error_handler.py
+│   │   ├── api_lifecycle.py
+│   │   ├── api_models.py
+│   │   ├── api_readme.md
+│   │   ├── deps
+│   │   │   ├── auth.py
+│   │   │   ├── blacklist.py
+│   │   │   ├── roles.py
+│   │   │   └── tokens.py
+│   │   ├── errors
+│   │   │   └── handlers.py
+│   │   ├── middleware
+│   │   │   ├── log_request_middleware.py
+│   │   │   ├── metrics_middleware.py
+│   │   │   ├── monitoring_middleware.py
+│   │   │   ├── rate_limit_middleware.py
+│   │   │   ├── request_id_middleware.py
+│   │   │   ├── telemetry_middleware.py
+│   │   │   └── trace_middleware.py
+│   │   ├── routes
+│   │   │   ├── __init__.py
+│   │   │   ├── routes_api_map.py
+│   │   │   ├── routes_api_schema.py
+│   │   │   ├── routes_boot_info.py
+│   │   │   ├── routes_build_info.py
+│   │   │   ├── routes_capabilities.py
+│   │   │   ├── routes_changelog.py
+│   │   │   ├── routes_command_metadata.py
+│   │   │   ├── routes_commands.py
+│   │   │   ├── routes_debug_snapshot.py
+│   │   │   ├── routes_dependencies.py
+│   │   │   ├── routes_diagnostics.py
+│   │   │   ├── routes_endpoints.py
+│   │   │   ├── routes_environment.py
+│   │   │   ├── routes_flags.py
+│   │   │   ├── routes_health_extended.py
+│   │   │   ├── routes_info.py
+│   │   │   ├── routes_internal.py
+│   │   │   ├── routes_introspection.py
+│   │   │   ├── routes_limits.py
+│   │   │   ├── routes_manifest.py
+│   │   │   ├── routes_metrics.py
+│   │   │   ├── routes_modes.py
+│   │   │   ├── routes_modules.py
+│   │   │   ├── routes_overview.py
+│   │   │   ├── routes_ping.py
+│   │   │   ├── routes_profile.py
+│   │   │   ├── routes_release_notes.py
+│   │   │   ├── routes_runtime_info.py
+│   │   │   ├── routes_state.py
+│   │   │   ├── routes_status.py
+│   │   │   ├── routes_summary.py
+│   │   │   ├── routes_system_all.py
+│   │   │   ├── routes_system_checks.py
+│   │   │   ├── routes_system_components.py
+│   │   │   ├── routes_system_constants.py
+│   │   │   ├── routes_system_identity.py
+│   │   │   ├── routes_system_labels.py
+│   │   │   ├── routes_system_minimal.py
+│   │   │   ├── routes_system_overrides.py
+│   │   │   ├── routes_system_paths.py
+│   │   │   ├── routes_system_roles.py
+│   │   │   ├── routes_system_tree.py
+│   │   │   ├── routes_tags.py
+│   │   │   ├── routes_uptime.py
+│   │   │   └── routes_version.py
+│   │   ├── structured_error_handler.py
+│   │   └── v1
+│   │       ├── __init__.py
+│   │       ├── api.py
+│   │       ├── endpoints
+│   │       │   ├── __init__.py
+│   │       │   ├── ai.py
+│   │       │   ├── auth.py
+│   │       │   ├── protected.py
+│   │       │   ├── system.py
+│   │       │   └── user.py
+│   │       └── system
+│   │           ├── __init__.py
+│   │           └── db_init.py
+│   ├── core
+│   │   ├── config.py
+│   │   ├── config_loader.py
+│   │   ├── engines
+│   │   │   ├── __init__.py
+│   │   │   ├── micro_confidence.py
+│   │   │   ├── micro_execution.py
+│   │   │   ├── micro_memory.py
+│   │   │   └── micro_planning.py
+│   │   ├── factory.py
+│   │   ├── lifecycle_guard.py
+│   │   ├── logging.py
+│   │   ├── logging_config.py
+│   │   ├── process_manager.py
+│   │   ├── rate_limit_stub.py
+│   │   ├── request_id_generator.py
+│   │   ├── runtime
+│   │   │   ├── __init__.py
+│   │   │   └── runtime_engine.py
+│   │   ├── security.py
+│   │   ├── settings.py
+│   │   ├── structured_error.py
+│   │   ├── structured_log.py
+│   │   ├── structured_log_writer.py
+│   │   ├── system
+│   │   │   ├── __init__.py
+│   │   │   └── orchestrator.py
+│   │   ├── system_all.py
+│   │   ├── system_api_map.py
+│   │   ├── system_api_schema.py
+│   │   ├── system_boot_info.py
+│   │   ├── system_build_info.py
+│   │   ├── system_capabilities.py
+│   │   ├── system_changelog.py
+│   │   ├── system_checks.py
+│   │   ├── system_components.py
+│   │   ├── system_constants.py
+│   │   ├── system_debug_snapshot.py
+│   │   ├── system_dependencies.py
+│   │   ├── system_endpoints.py
+│   │   ├── system_environment.py
+│   │   ├── system_flags.py
+│   │   ├── system_health_extended.py
+│   │   ├── system_identity.py
+│   │   ├── system_labels.py
+│   │   ├── system_limits.py
+│   │   ├── system_manifest.py
+│   │   ├── system_minimal.py
+│   │   ├── system_modes.py
+│   │   ├── system_modules.py
+│   │   ├── system_overrides.py
+│   │   ├── system_overview_provider.py
+│   │   ├── system_paths.py
+│   │   ├── system_ping.py
+│   │   ├── system_profile.py
+│   │   ├── system_release_notes.py
+│   │   ├── system_roles.py
+│   │   ├── system_runtime_info.py
+│   │   ├── system_state.py
+│   │   ├── system_summary.py
+│   │   ├── system_tags.py
+│   │   ├── system_tree.py
+│   │   ├── system_uptime.py
+│   │   ├── telemetry_logger.py
+│   │   ├── trace_id_generator.py
+│   │   ├── uvicorn_runner.py
+│   │   ├── validation_guard.py
+│   │   └── version.py
+│   ├── crud
+│   │   └── user.py
+│   ├── db
+│   │   ├── __init__.py
+│   │   ├── base.py
+│   │   ├── base_class.py
+│   │   ├── init_db.py
+│   │   ├── migrations
+│   │   │   ├── env.py
+│   │   │   ├── script.py.mako
+│   │   │   └── versions
+│   │   │       ├── 18aa435b1295_initial_migration.py
+│   │   │       ├── railway.toml
+│   │   │       ├── repo_tree.txt
+│   │   │       └── requirements.txt
+│   │   ├── models
+│   │   │   └── user.py
+│   │   └── session.py
+│   ├── diagnostics
+│   │   ├── diagnostics_aggregator.py
+│   │   ├── diagnostics_api.py
+│   │   ├── diagnostics_commands.py
+│   │   ├── diagnostics_core.py
+│   │   └── diagnostics_runtime.py
+│   ├── internal
+│   │   └── internal_tools_index.py
+│   ├── main.py
+│   ├── metrics
+│   │   ├── metrics_collector.py
+│   │   └── metrics_core.py
+│   ├── models
+│   │   ├── __init__.py
+│   │   └── user.py
+│   ├── monitoring
+│   │   └── monitoring_stub.py
+│   ├── schemas
+│   │   └── user.py
+│   └── services
+│       └── user_service.py
+├── app.db
+├── docker-compose.yml
+├── docs
+│   ├── DEPLOYMENT.md
+│   ├── INTERNAL_OVERVIEW.md
+│   ├── QUICKSTART.md
+│   ├── REQUEST_FLOW.md
+│   ├── SMOKE_TEST.md
+│   ├── SYSTEM_API.md
+│   ├── SYSTEM_CHANGELOG.md
+│   ├── SYSTEM_CHECKLIST.md
+│   ├── SYSTEM_CONSTANTS.md
+│   ├── SYSTEM_FINAL.md
+│   ├── SYSTEM_HEALTH.md
+│   ├── SYSTEM_INTROSPECTION.md
+│   ├── SYSTEM_MANIFEST.md
+│   ├── SYSTEM_MINIMAL.md
+│   ├── SYSTEM_OVERVIEW.md
+│   ├── SYSTEM_RUNTIME.md
+│   ├── SYSTEM_STRUCTURE.md
+│   ├── SYSTEM_SUMMARY.md
+│   ├── SYSTEM_UPTIME.md
+│   └── USAGE_API.md
+├── engine
+│   ├── __init__.py
+│   ├── command_router.py
+│   ├── diff_preview.py
+│   ├── engine.py
+│   ├── engine_registry.py
+│   ├── file_writer.py
+│   ├── generator.js
+│   ├── history_manager.py
+│   ├── json_output.py
+│   ├── openrouter_client.py
+│   ├── tasks.py
+│   ├── tree_preview.py
+│   └── utils
+│       └── fileWriter.js
+├── main.py
+├── project_structure.txt
+├── requirements.txt
+└── scripts
+    ├── healthcheck.sh
+    ├── run_docker.sh
+    └── run_local.sh
+
+54 directories, 388 files

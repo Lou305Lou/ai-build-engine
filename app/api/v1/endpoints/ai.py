@@ -2,6 +2,7 @@ from fastapi import APIRouter, HTTPException
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 from typing import Any, Dict
+
 from app.ai.command_router import ai_command_router
 from app.ai.handlers.stream_ai_response import handle_stream_ai_response
 from app.ai.handlers.stream_assemble_project import handle_stream_assemble_project
@@ -11,17 +12,19 @@ from app.ai.handlers.stream_patch_region_ast import handle_stream_patch_region_a
 
 router = APIRouter()
 
+
 class AICommandRequest(BaseModel):
     command: str
     payload: Dict[str, Any] = {}
+
 
 @router.post("/execute")
 async def execute_ai_command(body: AICommandRequest):
     try:
         result = await ai_command_router.execute(body.command, body.payload)
         return {"status": "success", "result": result}
-    except HTTPException as e:
-        raise e
+    except HTTPException:
+        raise
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 

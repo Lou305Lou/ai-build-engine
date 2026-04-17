@@ -1,8 +1,11 @@
 from app.ai.generators.code_generator import code_generator
 
+
 async def handle_infer_paths(payload: dict) -> dict:
     """
-    Infer file paths and map code blocks to them.
+    AI command: infer_paths
+    - Infers real file paths from AI text
+    - Generates a complete file map
     """
     ai_text = payload.get("ai_text")
     if not ai_text:
@@ -12,5 +15,5 @@ async def handle_infer_paths(payload: dict) -> dict:
 
     return {
         "command": "infer_paths",
-        "result": result
+        "result": result,
     }
