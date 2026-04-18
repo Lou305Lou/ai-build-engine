@@ -3,7 +3,7 @@ from __future__ import annotations
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.api.api_app import api_router as root_api_router
+from app.api.api_app import v1_router as root_api_router
 from app.api.v1.api import api_router as v1_api_router
 from app.core.logging_config import configure_logging
 
